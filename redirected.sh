@@ -131,7 +131,7 @@ do
               sleep 2
               continue
             fi
-            docker run --name redirect_$srv -p $cat_port:$cat_port --net=host --restart always -v $(pwd)/$srv:/etc/rinetd -td swager
+            docker run --name redirect_$srv -p $cat_port:$cat_port --net=host --restart always -v $(pwd)/$srv:/etc/rinetd -td maid
           elif [ "$status" == "2" ];then
            docker stop redirect_$srv
            docker rm redirect_$srv
@@ -153,9 +153,9 @@ do
   	done
   else
   	if echo "$docker_version" | grep 'version' > /dev/null;then
-      check_image=$(docker images | grep swager)
+      check_image=$(docker images | grep maid)
       if [ "$check_image" == "" ];then
-        echo "docker build -t swager ."
+        echo "docker build -t maid ."
         exit
       fi
 
